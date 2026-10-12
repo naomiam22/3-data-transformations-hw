@@ -7,6 +7,7 @@
 
 #Load packages
 library(tidyverse)
+library(dplyr)
 ds <- read_csv("data_raw/rolling_stone_500.csv")
 
 ### Question 1 ---------- 
@@ -16,6 +17,9 @@ ds <- read_csv("data_raw/rolling_stone_500.csv")
 #Use a function to check that your conversion succeeded
 
 #ANSWER
+glimpse(ds)
+ds$Year <- as.numeric(ds$Year)
+is.numeric(ds$Year)
 
 
 ### Question 2 ---------- 
@@ -24,7 +28,9 @@ ds <- read_csv("data_raw/rolling_stone_500.csv")
 # change ds so that all of the variables are lowercase
 
 #ANSWER
-
+library(janitor)
+ds <- ds %>% rename_with(tolower)
+ds
 
 ### Question 3 ----------
 
@@ -33,6 +39,10 @@ ds <- read_csv("data_raw/rolling_stone_500.csv")
 # Hint: read the documentation for ?floor and make sure year is numeric (from Question 1)
 
 #ANSWER
+is.numeric(ds$year)
+ds <- ds %>% mutate(decade = floor(year/10)) %>% 
+      mutate(decade = decade*10)
+ds
 
 
 ### Question 4 ----------
