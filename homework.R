@@ -1,7 +1,7 @@
 #PSYC 259 Homework 3 - Data Transformation
 #For full credit, provide answers for at least 7/11
 
-#List names of students collaborating with: 
+#List names of students collaborating with: Ricky Haneda
 
 ### SETUP: RUN THIS BEFORE STARTING ----------
 
@@ -29,7 +29,8 @@ is.numeric(ds$Year)
 
 #ANSWER
 library(janitor)
-ds <- ds %>% rename_with(tolower)
+ds <- ds %>% 
+  rename_with(tolower)
 ds
 
 ### Question 3 ----------
@@ -40,9 +41,10 @@ ds
 
 #ANSWER
 is.numeric(ds$year)
-ds <- ds %>% mutate(decade = floor(year/10)) %>% 
-      mutate(decade = decade*10)
-ds
+ds <- ds %>% 
+  mutate(decade = floor(year/10)) %>% 
+  mutate(decade = decade*10)
+view(ds)
 
 
 ### Question 4 ----------
@@ -50,6 +52,9 @@ ds
 # Sort the dataset by rank so that 1 is at the top
 
 #ANSWER
+ds <- ds %>% 
+  arrange(rank)
+view(ds)
 
 
 ### Question 5 ----------
@@ -58,7 +63,10 @@ ds
 # That just has the artists and songs for the top 10 songs
 
 #ANSWER
-
+ds_top10 <- ds %>% 
+  select(rank:artist) %>% 
+  filter(rank < 11)
+view(ds_top10)
 
 
 ### Question 6 ----------
@@ -70,6 +78,7 @@ ds
 #ANSWER
 
 
+
 ### Question 7 ----------
 
 # Use filter on the original dataset 'ds' to find all of the artists/song titles from 
@@ -79,6 +88,7 @@ ds
 # (this might take some searching to find functions that will help)
 
 #ANSWER
+
 
 
 ### Question 8 ---------- 
