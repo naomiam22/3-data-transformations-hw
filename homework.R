@@ -76,7 +76,10 @@ view(ds_top10)
 # Hint, the function drop_na() might help. Read ?drop_na
 
 #ANSWER
-
+ds_sum <- ds %>% summarize(earliest_year = min(year, na.rm = T),
+                latest_year = max(year, na.rm = T),
+                mean_year = mean(year, na.rm = T))
+ds_sum
 
 
 ### Question 7 ----------
@@ -88,7 +91,8 @@ view(ds_top10)
 # (this might take some searching to find functions that will help)
 
 #ANSWER
-
+ds %>% filter(year == 1879 | year == 1980 | year == 2020) %>% 
+  arrange(year)
 
 
 ### Question 8 ---------- 
@@ -100,6 +104,8 @@ view(ds_top10)
 # find the correct oldest, averag-ist, and most recent songs
 
 #ANSWER
+
+
 
 
 ### Question 9 ---------
