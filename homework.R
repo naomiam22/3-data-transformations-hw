@@ -137,8 +137,9 @@ ds_stats2
 # Use the pipe %>% to string the commands together
 
 #ANSWER
-
-
+ds %>% group_by(decade) %>% 
+  summarize(mean_rank = mean(rank, na.rm = T),
+            n= n())
 
 
 ### Question 10 --------
@@ -150,10 +151,12 @@ ds_stats2
 # Check against your answers from Question 9 to make sure it matches
 
 #ANSWER
-
-
-
+ds %>% count(c(decade)) %>% 
+  slice_max(n)
 
 
 ### Question 11 ------
 # Use RStudio's styler to style all the code in your homework
+
+
+
