@@ -91,8 +91,10 @@ ds_sum
 # (this might take some searching to find functions that will help)
 
 #ANSWER
-ds %>% filter(year == 1879 | year == 1980 | year == 2020) %>% 
+ds_stats <- ds %>% 
+  filter(year == 1879 | year == 1980 | year == 2020) %>% 
   arrange(year)
+ds_stats
 
 
 ### Question 8 ---------- 
@@ -104,8 +106,26 @@ ds %>% filter(year == 1879 | year == 1980 | year == 2020) %>%
 # find the correct oldest, averag-ist, and most recent songs
 
 #ANSWER
+ds <- ds %>% 
+  mutate(year = ifelse(year < 1880, 1979, year))
+
+ds <- 
+  ds %>% 
+  mutate(decade = floor(year/10)) %>% 
+  mutate(decade = decade*10)
+view(ds)
 
 
+ds_sum2 <- ds %>% summarize(earliest_year = min(year, na.rm = T),
+                           latest_year = max(year, na.rm = T),
+                           mean_year = mean(year, na.rm = T))
+ds_sum2
+
+
+ds_stats2 <- ds %>% 
+  filter(year == 1937 | year == 1981 | year == 2020) %>% 
+  arrange(year)
+ds_stats2
 
 
 ### Question 9 ---------
@@ -119,6 +139,8 @@ ds %>% filter(year == 1879 | year == 1980 | year == 2020) %>%
 #ANSWER
 
 
+
+
 ### Question 10 --------
 
 # Look up the dplyr "count" function
@@ -128,6 +150,9 @@ ds %>% filter(year == 1879 | year == 1980 | year == 2020) %>%
 # Check against your answers from Question 9 to make sure it matches
 
 #ANSWER
+
+
+
 
 
 ### Question 11 ------
